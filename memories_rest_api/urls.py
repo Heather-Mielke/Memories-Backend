@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import include #added
+from django.conf.urls import include  # added
 
 urlpatterns = [
-    path('', include('memories_api.urls')), #added
+    path('', include('memories_api.urls')),  # added
     path('admin/', admin.site.urls),
 ]
