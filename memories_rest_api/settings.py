@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@$glw1umr&7@l3jh)*5@xs6u%^d8#sggh08gngc)-7_aj2k$0*
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
-                 'remember-memories-database.herokuapp.com']  # added
+                 'remember-memories-database.herokuapp.com', '*']  # added
 
 
 # Application definition
