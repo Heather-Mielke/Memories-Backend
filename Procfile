@@ -1,0 +1,1 @@
+web: gunicorn memories_rest_api.wsgi
