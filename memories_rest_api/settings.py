@@ -31,15 +31,17 @@ ALLOWED_HOSTS = ['localhost',
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',  # added
-    'rest_framework',  # added
-    'memories_api',  # added
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'memories_api',  # added
+    'corsheaders',  # added
+    'rest_framework',  # added
+    'memories_rest_api',
+    'knox',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +58,11 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True  # added
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://localhost:3001']
+
+
+
 
 ROOT_URLCONF = 'memories_rest_api.urls'
 
@@ -94,6 +101,7 @@ DATABASES = {
 db_from_env = dj_database_url.config(conn_max_age=600)  # add this
 DATABASES['default'].update(db_from_env)  # add this
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -129,9 +137,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ],
+}
